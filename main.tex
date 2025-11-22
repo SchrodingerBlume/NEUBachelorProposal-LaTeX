@@ -1,0 +1,183 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% 东北大学本科毕业设计（论文）开题报告 LaTeX 模板
+% 使用说明：
+% 1. 确保 NEUBachelorProposal.cls 文件与本文件在同一目录
+% 2. 使用 XeLaTeX 编译
+% 3. 使用 Biber 作为文献工具
+% 4. 按照 XeLaTeX -> Biber -> XeLaTeX -> XeLaTeX 的顺序编译
+\documentclass{NEUBachelorProposal}
+
+% ==================== 封面信息设置 ====================
+% 请根据实际情况修改以下信息
+\proposaltitle{在这里输入标题，模板版本\Version}% 论文题目
+
+% 如果标题只有一行，但是却出现了多余的空白或第二行线
+% 则请把 \forcetitlenofilloff 最后的 off 改成 on
+\forcetitlenofilloff
+
+% 如果标题仅一行，则是居中对齐
+% 如果标题有两行，则改为左对齐
+% 把 \forcecentertitleoff 最后的 off 改成 on
+% 则在有两行标题时，也会居中对齐
+\forcecentertitleoff
+
+\school{生命科学与健康学院}% 学院名称
+\major{生物工程}% 专业名称
+\studentid{20227523}% 学号
+\grade{2022级}% 年级
+\studentname{薛定谔}% 学生姓名
+\supervisor{毛毛}% 指导教师
+\submityear{2025}% 年份
+\submitmonth{3}% 月份
+\submitday{3}% 日期
+
+\begin{document}
+
+% ==================== 生成封面 ====================
+\makecover
+
+% ==================== 正文内容 ====================
+\linespread{1.625}% 正文预设行距 1.625，对应 Word 1.5 倍行距
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 选题意义
+\mokuai{选\\题\\意\\义}{%
+{\tips{（从课题的来源，目的及意义来说明选题的合理性，从技术方面来论述选题的理论研究价值，从经济、社会效益等方面论述选题的实际应用价值。）}}
+
+\suojin \textbf{首先声明：本模板不包含\LaTeX\ 的基本使用教程。 }
+
+\suojin 编译器请选择 XeLaTeX，文献工具请选择 biber。
+
+\suojin 每个模块使用\texttt{\textbackslash mokuai}[<字号>]\{<左侧文字>\}\{<正文内容>\}得到，其中，字号参数缺省时，默认使用小四号字体。例如想要使用五号字，就使用\texttt{\textbackslash mokuai[5]\{\}\{\}}；想要使用小三号字，就使用\texttt{\textbackslash mokuai[-3]\{\}\{\}}。
+
+\suojin 左侧文字使用\texttt{\textbackslash\textbackslash}来换行。
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 国内外研究现状概述
+\mokuai{国\\内\\外\\研\\究\\现\\状\\概\\述}{%
+\tips{（根据调研结果从理论、技术、具体应用、发展方向等方面阐述当前课题的国内外研究或实现现状，进而说明当前存在哪些不足……）}
+
+\suojin 像这样在段首使用\texttt{\textbackslash suojin}命令实现首行缩进。
+
+像这样不在段首使用\texttt{\textbackslash suojin}命令则不会首行缩进。
+
+\suojin 每次新起一段文字时，应当在代码中空一行。
+
+\section{各级标题命令可以使用}
+
+\subsection{二级}
+
+\subsubsection{三级}
+
+\paragraph{四级标题默认设置是不换行的}
+
+这是正文，与\texttt{\textbackslash paragraph}之间没有换行。
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 主要研究内容
+\mokuai{主\\要\\研\\究\\内\\容}{%
+\tips{（从毕业设计具体从事的工作进行描述，说明自己毕业设计所做的内容。）}
+
+\suojin\texttt{\textbackslash mokuai}命令的实现基于表格环境，因此许多常规的\LaTeX\ 命令无法使用。例如\texttt{\textbackslash verb}命令就不可用，但这无伤大雅，必须指出，在开题报告中写代码实在不是明智之选。
+
+\suojin 首先介绍图的使用，基本框架是：\texttt{\textbackslash tu\{<图片宽度>\}\{<图片路径>\}}，其中图片宽度不得超过\texttt{13.825cm}；图的题注命令格式是：\texttt{\textbackslash tizhu\{tu\}\{<题注内容>\}\textbackslash label\{<图标签>\}}。看图\ref{fig:flower}这个例子：
+
+\vskip 2em % 2 字高刚好齐底，即再大了，这个模块就会跑到下一页
+}
+
+% 跨页后若要续上个模块，将左侧文字留空
+\mokuai{}% 留空
+{
+\tu{4cm}{figures/flower.png}
+\tizhu{tu}{蓝天下的一朵花}\label{fig:flower}
+
+\suojin 跨页后若要续上个模块，应新起一个模块，并将左侧文字留空（当然，你要是想重复左侧文字的话也可以）。可以在每页插入若干\texttt{\textbackslash vskip}命令，以调整底部横线至足够美观的位置。例如上一页最后就插入了一个\texttt{\textbackslash vkip 2em}。
+
+\suojin 接下来介绍表格的使用。由于\texttt{\textbackslash mokuai}中不支持继续嵌套表格，只能通过\texttt{tabular(x)}环境结合\texttt{minipage}环境来实现，本模板已将其封装为一个宏命令，其框架为：
+
+\texttt{\textbackslash tizhu\{biao\}\{<题注内容>\}\textbackslash label\{<表标签>\}}
+
+\texttt{\textbackslash biao\{<列数>\}\{}
+
+\texttt{表头1 \& 表头2 \textbackslash\textbackslash~\textbackslash midrule \% <-- 表头要加}
+
+\texttt{内容1 \& 内容2 \textbackslash\textbackslash}
+
+\texttt{\}}
+
+\suojin 如表\ref{tab:motto}所示，单元格内可以套上一层\texttt{\textbackslash makecell[c]\{\}}，并结合\texttt{\textbackslash\textbackslash}来换行。
+
+\tizhu{biao}{东大校训与生科院训}\label{tab:motto}
+\biao{2}{
+东大校训 & 生科院训 \\ \midrule
+\makecell[c]{自强不息\\知行合一} & 笃志近思，厚德敦行 \\
+}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 拟采用的研究思路
+\mokuai{拟采用\\的研究\\思\hspace{1em}路}{%
+\tips{（方法、技术路线、可行性论证等。）}
+
+\suojin “工作进度安排”有自己专属的命令，其格式为：
+
+\texttt{\textbackslash jindu\{}
+
+\texttt{ <阶段1> \& <起止日期1> \& <任务1> \& <阶段成果1> \textbackslash\textbackslash~\textbackslash hline}
+
+\texttt{ <阶段2> \& <起止日期2> \& <任务2> \& <阶段成果2> \textbackslash\textbackslash~\textbackslash hline}
+
+\texttt{……\} \%~最后一行可以不加\textbackslash hline}
+}
+
+% 续上一模块
+\mokuai{}{%
+\suojin 进度模块中如需换行，应使用\texttt{\textbackslash newline}命令，具体示例见对应模块。
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 工作进度安排
+\jindu{%
+  1  & 3月2日—3月15日\newline（1-2周）   &  与教师沟通毕设任务 & 开题报告 \\ \hline
+  2  & 3月16日—3月22日\newline（3-3周）  &  查阅文献资料 &  论文综述 \\ \hline
+  3  & 3月23日—4月5日\newline（4-5周）   &  构建缺陷型菌株 & 检测数据结果图 \\ \hline
+  4  & 3月23日—4月5日\newline（4-5周）   &  构建过表达菌株 & 检测数据结果图、提交中期报告 \\ \hline
+  5  & 4月27日—5月17日\newline（9-11周） &  整理论文资料，\newline 撰写论文 & 论文全文 \\ \hline
+  6  & 5月18日—5月24日\newline（12-12周）&  整理论文资料 & 毕业设计手册 \\ \hline
+  7  & 5月24日—5月31日\newline（13-13周）&  修改、审核论文 & 排版格式正确的论文初稿全文 \\ \hline
+  8  & 6月1日—6月7日\newline （14-14周）&  准备答辩 & 各种答辩材料 \\ % 不加\hline，加也行
+}
+
+% 参考文献目录
+\mokuai{参考\\文献\\目录}{%
+\suojin 参考文献\texttt{bib}信息统一放在根目录下的\texttt{references.bib}中。在文中使用\texttt{\textbackslash cite\{<bibkey>\}}来引用\cite{1_book_example1}；同时引用多个文献时，把所有\texttt{<bibkey>}放到一个命令中，用半角逗号隔开\cite{2_book_example2,3_conference_example1,4_collection_example1,5_thesis_example1}；正文中如需对引文进行阐述时，应使用\texttt{\textbackslash parencite\{\}}命令代替\texttt{\textbackslash cite\{\}}命令，且用法不变，如：\parencite{1_book_example1,2_book_example2,7_report_example1,8_report_example2}。
+
+\suojin 打印文献使用\texttt{\textbackslash printbibrange\{<起始编号>\}\{<结束编号>\}}，只有引用过才能被打印\cite{9_patent_example1,11_inbook_example1,12_inconference_example1,13_periodical_example1,14_periodical_example3,15_journal_example1,16_news_example1,17_online_book_example1,18_online_journal_example1,19_online_news_example1,20_dbmt}。例如\texttt{\textbackslash printbibrange\{1\}\{1\}}就会打印第1篇文献。
+
+\printbibrange{1}{1}
+}
+% 续上一模块
+\mokuai{}{%
+
+\tips{再例如\texttt{\textbackslash printbibrange\{2\}\{11\}}就会打印第2至11篇文献。}
+
+\printbibrange{2}{11}
+
+\vskip 0.75em% 插入空白至齐底
+
+\tips{应当合理调整打印范围，并结合\texttt{\textbackslash vskip}以平衡分页的合理性与美观性。}
+}
+% 续上一模块
+\mokuai{}{%
+\printbibrange{12}{18}
+
+\suojin 会议纪要太过复杂，使用\LaTeX\ 来实现反而增加不便。请在根目录下找到\texttt{huiyijiyao.doc}，在 Word 中填写后，输出为同名 pdf 文件，然后以之覆盖根目录中已有的\texttt{huiyijiyao.pdf}。\texttt{\textbackslash huiyijiyao}命令用于插入这个 pdf。
+
+\vskip 14em% 插入空白至齐底
+
+\tips{应当合理调整打印范围，并结合\texttt{\textbackslash vskip}以平衡分页的合理性与美观性。}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 会议纪要
+\huiyijiyao
+
+\end{document}
