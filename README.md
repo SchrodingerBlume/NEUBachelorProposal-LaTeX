@@ -18,7 +18,7 @@
 2. 编辑 `main.tex` 文件，填写个人信息和报告内容
 3. 使用 XeLaTeX 按上述顺序编译
 
-**推荐使用 [TeXPage](https://www.texpage.com/) 快速开始！**
+**推荐使用 [TeXPage](https://www.texpage.com/zh/template/9b9b8732-d494-4980-b176-64895e2c745d) 快速开始！**
 
 ## 文件说明
 
