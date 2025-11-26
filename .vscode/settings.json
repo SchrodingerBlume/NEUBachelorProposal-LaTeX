@@ -1,0 +1,89 @@
+{
+  // LaTeX Workshop 配置
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": [
+        "%DOCFILE%"
+      ]
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "XeLaTeX ➞ Biber ➞ XeLaTeX × 2",
+      "tools": [
+        "xelatex",
+        "biber",
+        "xelatex",
+        "xelatex"
+      ]
+    },
+    {
+      "name": "XeLaTeX",
+      "tools": [
+        "xelatex"
+      ]
+    },
+    {
+      "name": "XeLaTeX × 2",
+      "tools": [
+        "xelatex",
+        "xelatex"
+      ]
+    }
+  ],
+
+  // 设置默认的编译配方
+  "latex-workshop.latex.recipe.default": "first",
+
+  // 自动编译设置
+  "latex-workshop.latex.autoBuild.run": "onSave",
+
+  // PDF 查看器设置
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // 清理辅助文件
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.snm",
+    "*.synctex.gz",
+    "*.nav",
+    "*.bcf",
+    "*.run.xml"
+  ],
+
+  // 错误和警告设置
+  "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": false,
+
+  // 正向/反向搜索设置
+  "latex-workshop.synctex.afterBuild.enabled": true
+}

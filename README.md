@@ -63,6 +63,63 @@ xelatex NEUBachelorProposal.dtx
 
 详细使用方法请参考 `main.tex` 中的示例代码和注释。
 
+## 在 VSCode 中编译
+
+本项目已配置好 VSCode LaTeX Workshop 扩展的编译环境。
+
+### 前置要求
+
+1. 安装 [Visual Studio Code](https://code.visualstudio.com/)
+2. 安装 VSCode 扩展：[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+3. 确保系统已安装 TeX Live、MiKTeX 或 MacTeX（包含 XeLaTeX 和 Biber）
+
+### 编译步骤
+
+1. 用 VSCode 打开项目文件夹
+2. 打开 `main.tex` 文件
+3. 使用以下任一方式编译：
+
+   **方法一：自动编译**
+   - 保存文件时会自动编译（已配置 `onSave` 自动编译）
+
+   **方法二：手动编译**
+   - 按 `Ctrl+Alt+B`（Windows/Linux）或 `Cmd+Option+B`（macOS）
+   - 或点击左侧栏的 TeX 图标，选择 "Build LaTeX project"
+
+   **方法三：使用配方**
+   - 按 `Ctrl+Alt+V`（Windows/Linux）或 `Cmd+Option+V`（macOS）查看 PDF
+   - 点击编辑器右上角的绿色播放按钮
+
+### 可用的编译配方
+
+项目提供了三种编译配方（`.vscode/settings.json` 中配置）：
+
+1. **XeLaTeX ➞ Biber ➞ XeLaTeX × 2**（默认，完整编译）
+   - 适用于有参考文献的完整编译
+   - 编译顺序：XeLaTeX → Biber → XeLaTeX → XeLaTeX
+
+2. **XeLaTeX**（快速编译）
+   - 仅运行一次 XeLaTeX
+   - 适用于快速预览
+
+3. **XeLaTeX × 2**（无文献编译）
+   - 运行两次 XeLaTeX
+   - 适用于更新交叉引用但不处理文献
+
+### 查看 PDF
+
+编译完成后，PDF 会自动在 VSCode 标签页中打开。你也可以：
+- 右键点击 PDF 查看器选择外部查看器
+- 使用 `Ctrl+Alt+V`（Windows/Linux）或 `Cmd+Option+V`（macOS）在新标签页中查看
+
+### 清理辅助文件
+
+编译会产生大量辅助文件（`.aux`、`.log`、`.bbl` 等）。清理方式：
+- 按 `Ctrl+Alt+C`（Windows/Linux）或 `Cmd+Option+C`（macOS）
+- 或在 TeX 侧边栏选择 "Clean up auxiliary files"
+
+辅助文件已添加到 `.gitignore`，不会被提交到 Git 仓库。
+
 ## License
 
 本项目采用 [LaTeX Project Public License v1.3c](LICENSE) 许可证。
