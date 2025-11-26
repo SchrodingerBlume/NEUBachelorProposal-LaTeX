@@ -1,0 +1,984 @@
+% \iffalse meta-comment
+%
+% NEUBachelorProposal.dtx
+% Copyright 2025 SchrodingerBlume
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is SchrodingerBlume.
+%
+% This work consists of the files NEUBachelorProposal.dtx and NEUBachelorProposal.ins
+% and the derived file NEUBachelorProposal.cls.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{NEUBachelorProposal.dtx}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}
+%<class>\ProvidesClass{NEUBachelorProposal}[2025/11/19 V-1.0.0 A Bachelor Proposal LaTeX Template for NEU students]
+%
+%<*driver>
+\documentclass{ctexart}
+\usepackage{hypdoc}
+\usepackage{geometry}
+\geometry{left=3cm,right=3cm,top=2.5cm,bottom=2.5cm}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!10}
+}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{NEUBachelorProposal.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \changes{v1.0.0}{2025/11/19}{Initial version}
+%
+% \GetFileInfo{NEUBachelorProposal.dtx}
+%
+% \DoNotIndex{\newcommand,\renewcommand,\RequirePackage,\LoadClass}
+% \DoNotIndex{\begin,\end,\if,\else,\fi,\iffalse,\ifthen}
+%
+% \title{东北大学本科毕业设计（论文）开题报告 \LaTeX{} 模板\\
+%        \texttt{NEUBachelorProposal} 文档类\thanks{本文档对应
+%        \texttt{NEUBachelorProposal}~\fileversion,
+%        最后修改于 \filedate。}}
+% \author{SchrodingerBlume}
+% \date{\filedate}
+%
+% \maketitle
+%
+% \begin{abstract}
+% \noindent
+% 本文档类为东北大学本科毕业设计（论文）开题报告提供了一个符合学校规范的 \LaTeX{} 模板。
+% 该模板支持 XeLaTeX 编译器，并集成了中文字体自动检测、参考文献管理等功能。
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \section{简介}
+%
+% \texttt{NEUBachelorProposal} 是为东北大学本科生毕业设计开题报告设计的 \LaTeX{} 文档类。
+% 该模板严格遵循学校的格式要求，并提供了丰富的自定义命令以简化报告的撰写过程。
+%
+% \subsection{主要特性}
+%
+% \begin{itemize}
+%   \item 自动检测并配置中文字体（支持 Windows、macOS 及 Linux 系统）
+%   \item 符合国标 GB7714-2015 的参考文献格式
+%   \item 提供封面、模块、图表、工作进度等专用命令
+%   \item 支持数学公式的精确排版
+%   \item 完善的页面布局和样式设置
+% \end{itemize}
+%
+% \subsection{编译环境}
+%
+% \begin{itemize}
+%   \item 编译器：XeLaTeX
+%   \item 文献工具：Biber
+%   \item 编译顺序：XeLaTeX → Biber → XeLaTeX → XeLaTeX
+% \end{itemize}
+%
+% \section{使用说明}
+%
+% \subsection{基本用法}
+%
+% 在文档开头使用本文档类：
+%
+% \begin{lstlisting}
+% \documentclass{NEUBachelorProposal}
+% \end{lstlisting}
+%
+% \subsection{封面信息设置}
+%
+% 使用以下命令设置封面信息：
+%
+% \begin{lstlisting}
+% \proposaltitle{论文题目}
+% \school{学院名称}
+% \major{专业名称}
+% \studentid{学号}
+% \grade{年级}
+% \studentname{学生姓名}
+% \supervisor{指导教师}
+% \submityear{年份}
+% \submitmonth{月份}
+% \submitday{日期}
+% \end{lstlisting}
+%
+% 然后使用 |\makecover| 命令生成封面。
+%
+% \subsection{内容模块}
+%
+% 使用 |\mokuai| 命令创建内容模块：
+%
+% \begin{lstlisting}
+% \mokuai{左侧标题}{正文内容}
+% \end{lstlisting}
+%
+% 可选参数用于指定字号，如 |\mokuai[-3]{...}{...}| 使用小三号字。
+%
+% \subsection{图表插入}
+%
+% 插入图片：
+%
+% \begin{lstlisting}
+% \tu{宽度}{图片路径}
+% \tizhu{tu}{图片说明}\label{fig:label}
+% \end{lstlisting}
+%
+% 插入表格：
+%
+% \begin{lstlisting}
+% \tizhu{biao}{表格说明}\label{tab:label}
+% \biao{列数}{
+%   表头1 & 表头2 \\ \midrule
+%   内容1 & 内容2 \\
+% }
+% \end{lstlisting}
+%
+% \subsection{工作进度安排}
+%
+% 使用 |\jindu| 命令创建工作进度表：
+%
+% \begin{lstlisting}
+% \jindu{
+%   1 & 起止日期 & 任务 & 阶段成果 \\ \hline
+%   2 & 起止日期 & 任务 & 阶段成果 \\ \hline
+% }
+% \end{lstlisting}
+%
+% \subsection{参考文献}
+%
+% 引用文献使用 |\cite{key}| 或 |\parencite{key}|，打印文献列表使用：
+%
+% \begin{lstlisting}
+% \printbibrange{起始编号}{结束编号}
+% \end{lstlisting}
+%
+% \StopEventually{\PrintChanges\PrintIndex}
+%
+% \section{实现}
+%
+% \subsection{文档类声明}
+%
+%    \begin{macrocode}
+%<*class>
+% 东北大学本科毕业设计（论文）开题报告LaTeX模板样式类
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{NEUBachelorProposal}[2025/11/19 V-1.0.0 A Bachelor Proposal LaTeX Template for NEU students]
+\providecommand{\Version}{V-1.0.0}
+\LoadClass[UTF8,heading=true,12pt,a4paper,fontset=none]{ctexart}
+%    \end{macrocode}
+%
+% \subsection{基本宏包}
+%
+%    \begin{macrocode}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{makecell}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{enumitem}
+\RequirePackage{float}
+\raggedbottom
+%    \end{macrocode}
+%
+% \subsection{页面设置}
+%
+%    \begin{macrocode}
+\RequirePackage{geometry}
+\geometry{
+    left=2.2cm,
+    right=2.2cm,
+    top=2.54cm,
+    bottom=2.54cm,
+    headheight=15pt,
+    headsep=10pt,
+    footskip=20.4pt
+}
+%    \end{macrocode}
+%
+% \subsection{全局设置}
+%
+% 设置表格和段落的默认样式。
+%
+%    \begin{macrocode}
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{6pt}
+\setlength{\parskip}{0.5em}
+%    \end{macrocode}
+%
+% \subsection{字体设置}
+%
+% 定义伪粗体和伪斜体参数。
+%
+%    \begin{macrocode}
+\newcommand{\fakeboldvalue}{2.17}
+\newcommand{\fakeslantvalue}{0.333}
+%    \end{macrocode}
+%
+% 定义布尔变量用于字体检测。
+%
+%    \begin{macrocode}
+\newif\iffound@system
+\newif\iffound@font
+\found@systemfalse
+%    \end{macrocode}
+%
+% \subsubsection{Windows 字体}
+%
+% 优先检测 Windows 系统字体。
+%
+%    \begin{macrocode}
+\IfFontExistsTF{SimSun}{
+  \setCJKmainfont{SimSun}[
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \setCJKfamilyfont{zhsong}{SimSun}[
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \setCJKfamilyfont{zhhei}{SimHei}[
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \setCJKfamilyfont{zhkai}{KaiTi}[
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \setCJKfamilyfont{zhfs}{FangSong}[
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \setCJKmonofont{FangSong}[
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \found@systemtrue
+}{
+%    \end{macrocode}
+%
+% \subsubsection{macOS 字体}
+%
+% 检测 macOS 系统字体。
+%
+%    \begin{macrocode}
+  \IfFileExists{/System/Library/Fonts/Menlo.ttc}{
+    \IfFontExistsTF{Songti SC}{
+      \setCJKmainfont{Songti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhsong}{Songti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhhei}{Heiti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhkai}{Kaiti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhfs}{STFangsong}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKmonofont{STFangsong}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \found@systemtrue
+    }{}
+  }{}
+}
+%    \end{macrocode}
+%
+% \subsubsection{其他系统字体}
+%
+% 对于其他系统，依次尝试 Noto、思源和 Fandol 字体。
+%
+%    \begin{macrocode}
+\iffound@system\else
+  \found@fontfalse
+  \IfFontExistsTF{Noto Serif CJK SC}{
+    \setCJKmainfont{Noto Serif CJK SC}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhhei}{Noto Sans CJK SC}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhkai}{FandolKai}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhfs}{FandolFang}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKmonofont{FandolFang}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \found@fonttrue
+  }{}
+  \iffound@font\else
+    \IfFontExistsTF{Source Han Serif SC}{
+      \setCJKmainfont{Source Han Serif SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhsong}{Source Han Serif SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhhei}{Source Han Sans SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhkai}{FandolKai}[
+        Extension     = .otf,
+        UprightFont   = *-Regular,
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhfs}{FandolFang}[
+        Extension     = .otf,
+        UprightFont   = *-Regular,
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKmonofont{FandolFang}[
+        Extension     = .otf,
+        UprightFont   = *-Regular,
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \found@fonttrue
+    }{}
+  \fi
+  \iffound@font\else
+    \setCJKmainfont{FandolSong}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhsong}{FandolSong}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhhei}{FandolHei}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhkai}{FandolKai}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKfamilyfont{zhfs}{FandolFang}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKmonofont{FandolFang}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+  \fi
+\fi
+%    \end{macrocode}
+%
+% 定义中文字体命令。
+%
+%    \begin{macrocode}
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+\newcommand*{\fangsong}{\CJKfamily{zhfs}}
+\setmainfont{Times New Roman}
+%    \end{macrocode}
+%
+% \subsection{数学字体设置}
+%
+%    \begin{macrocode}
+\RequirePackage{unicode-math}
+\xeCJKsetup{CJKmath=true}
+\setmathfont{XITS Math}[StylisticSet = 8]
+\setmathfont{XITS Math}[StylisticSet = 1, range = {cal,bfcal}]
+\DeclareRobustCommand\bm[1]{{\symbfit{#1}}}
+\DeclareRobustCommand\boldsymbol[1]{{\symbfit{#1}}}
+\unimathsetup{
+  math-style    = ISO,
+  bold-style    = ISO,
+  nabla         = upright,
+  partial       = upright,
+}
+\removenolimits{\int\iint\iiint\iiiint\oint\oiint\oiiint}
+\RequirePackage{upgreek}
+\providecommand{\dd}{\mathop{}\!\mathrm{d}}
+\providecommand{\ee}{\mathrm{e}}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\jj}{\mathrm{j}}
+\renewcommand\mathellipsis{\cdots}
+\AtBeginDocument{
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+}
+\IfFontExistsTF{SimSun}{
+    \setmathfont{SimSun}[range={"2225}]
+}{
+    \IfFontExistsTF{FandolSong-Regular}{
+    \setmathfont{FandolSong-Regular}[range={"2225}]}
+{}}
+\setmathfont{Times New Roman}[range = {up/{latin,Latin}}]
+\IfFontExistsTF{Times New Roman Bold}{
+  \setmathfont{Times New Roman Bold}[range = {bfup/{latin,Latin}}]
+}{
+  \setmathfont{Times New Roman}[range = {bfup/{latin,Latin}}, FakeBold = 2.17]
+}
+\IfFontExistsTF{Times New Roman Italic}{
+  \setmathfont{Times New Roman Italic}[range = {it/{latin,Latin}}]
+}{
+  \setmathfont{Times New Roman}[range = {it/{latin,Latin}}, FakeSlant = 0.33]
+}
+\IfFontExistsTF{Times New Roman Bold Italic}{
+  \setmathfont{Times New Roman Bold Italic}[range = {bfit/{latin,Latin}}]
+}{
+  \IfFontExistsTF{Times New Roman Bold}{
+    \setmathfont{Times New Roman Bold}[range = {bfit/{latin,Latin}}, FakeSlant = 0.33]
+  }{
+    \setmathfont{Times New Roman}[range = {bfit/{latin,Latin}}, FakeBold = 2.17, FakeSlant = 0.33]
+  }
+}
+\setmathfont{Times New Roman}[range={"03B5, "03C2, "03C6, "03B1, "03B2, "03B3, "03B4, "03B5, "03B6, "03B7, "03B8, "03B9, "03BA, "03BB, "03BC, "03BD, "03BE, "03BF, "03C0, "03C1, "03C3, "03C4, "03C5, "03C6, "03C7, "03C8, "03C9}]
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\let\mathbb\relax
+\DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
+\RequirePackage{newunicodechar}
+\newunicodechar{℃}{\unit{\celsius}}
+\newunicodechar{Ⅰ}{I}
+\newunicodechar{Ⅱ}{II}
+\newunicodechar{Ⅲ}{III}
+\newunicodechar{Ⅳ}{IV}
+\newunicodechar{Ⅴ}{V}
+\newunicodechar{Ⅵ}{VI}
+\newunicodechar{Ⅶ}{VII}
+\newunicodechar{Ⅷ}{VIII}
+\newunicodechar{Ⅸ}{IX}
+\newunicodechar{Ⅹ}{X}
+\newunicodechar{Ⅺ}{XI}
+\newunicodechar{Ⅻ}{XII}
+\newunicodechar{·}{$\cdot$}
+%    \end{macrocode}
+%
+% \subsection{SI 单位}
+%
+%    \begin{macrocode}
+\RequirePackage{siunitx}
+\sisetup{
+  inter-unit-product = \cdot,
+  list-separator = {、},
+  list-final-separator = {和},
+  list-pair-separator = {和},
+  list-units = single,
+  range-units = single,
+  range-phrase = \blx,
+  separate-uncertainty = true
+}
+%    \end{macrocode}
+%
+% \subsection{页眉页脚设置}
+%
+%    \begin{macrocode}
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\zihao{-5}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{firstpage}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+%    \end{macrocode}
+%
+% \subsection{封面命令}
+%
+%    \begin{macrocode}
+\RequirePackage{eso-pic}
+\RequirePackage{ifthen}
+\RequirePackage{calc}
+\RequirePackage{tikz}
+\newcommand{\@proposaltitle}{}
+\newcommand{\@school}{}
+\newcommand{\@major}{}
+\newcommand{\@studentid}{}
+\newcommand{\@grade}{}
+\newcommand{\@studentname}{}
+\newcommand{\@supervisor}{}
+\newcommand{\@submityear}{}
+\newcommand{\@submitmonth}{}
+\newcommand{\@submitday}{}
+\newcommand{\proposaltitle}[1]{\renewcommand{\@proposaltitle}{#1}}
+\newcommand{\school}[1]{\renewcommand{\@school}{#1}}
+\newcommand{\major}[1]{\renewcommand{\@major}{#1}}
+\newcommand{\studentid}[1]{\renewcommand{\@studentid}{#1}}
+\newcommand{\grade}[1]{\renewcommand{\@grade}{#1}}
+\newcommand{\studentname}[1]{\renewcommand{\@studentname}{#1}}
+\newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}}
+\newcommand{\submityear}[1]{\renewcommand{\@submityear}{#1}}
+\newcommand{\submitmonth}[1]{\renewcommand{\@submitmonth}{#1}}
+\newcommand{\submitday}[1]{\renewcommand{\@submitday}{#1}}
+\newlength{\titlewidth}
+\newboolean{forcecentertitle}
+\setboolean{forcecentertitle}{false}
+\newcommand{\forcecentertitleon}{\setboolean{forcecentertitle}{true}}
+\newcommand{\forcecentertitleoff}{\setboolean{forcecentertitle}{false}}
+\newcommand{\smarttitle}[1]{%
+    \settowidth{\titlewidth}{\zihao{4}#1}%
+    \ifthenelse{\boolean{forcecentertitle}}{%
+        \centering
+        #1
+    }{%
+        \ifthenelse{\lengthtest{\titlewidth > 18em}}{%
+            \raggedright
+            #1
+        }{%
+            \centering
+            #1
+        }
+    }
+}
+\newlength{\titleextrafill}
+\newboolean{forcetitlenofill}
+\setboolean{forcetitlenofill}{false}
+\newcommand{\forcetitlenofillon}{\setboolean{forcetitlenofill}{true}}
+\newcommand{\forcetitlenofilloff}{\setboolean{forcetitlenofill}{false}}
+\newlength{\titleminusfill}
+\newlength{\titleplusfill}
+%    \end{macrocode}
+%
+% \begin{macro}{\makecover}
+% 生成封面的命令。
+%    \begin{macrocode}
+\newcommand{\makecover}{
+    \thispagestyle{firstpage}
+    \settowidth{\titlewidth}{\zihao{4}\@proposaltitle}
+    \ifthenelse{\lengthtest{\titlewidth > 21.1em}}{%
+        \setlength{\titleextrafill}{1.1cm}
+    }{%
+        \setlength{\titleextrafill}{0cm}
+    }
+    \ifthenelse{\boolean{forcetitlenofill}}{%
+        \setlength{\titleminusfill}{-1.9cm}
+        \setlength{\titleplusfill}{1cm}
+    }{%
+        \setlength{\titleminusfill}{0cm}
+        \setlength{\titleplusfill}{-0.1cm}
+    }
+    \begin{center}
+        \vspace*{2.19cm}
+        {\fontsize{28pt}{28pt}\selectfont 东北大学}
+        \vspace{0.535cm}
+        {\fontsize{28pt}{28pt}\selectfont 毕业设计（论文）开题报告}
+        \vspace{4.35cm}
+        {\zihao{4}
+            \hspace*{0cm}\begin{tabular}{@{}r@{\hspace*{-0em}}l@{}}
+                \makebox[5em][s]{题\hfill 目：} &
+                \begin{minipage}[t]{18em}
+                    \linespread{1.85}\selectfont
+                    \smarttitle{\@proposaltitle}
+                \end{minipage} \\[\dimexpr0.1cm+\titleextrafill+\titleminusfill\relax]
+                \makebox[5em][s]{学\hfill 院：} &
+                \begin{minipage}[t]{18em}
+                    \centering\@school
+                    \hrule height 0.7pt
+                \end{minipage} \\[0.1cm]
+                \makebox[5em][s]{专\hfill 业：} &
+                \begin{minipage}[t]{18em}
+                    \centering\@major
+                    \hrule height 0.7pt
+                \end{minipage} \\[0.1cm]
+                \makebox[5em][s]{学\hfill 号：} &
+                \begin{minipage}[t]{5.2025cm}
+                    \centering\@studentid
+                    \vspace{0.03cm}
+                    \hrule height 0.7pt
+                \end{minipage}
+                \hfill
+                年级\begin{minipage}[t]{2.45cm}
+                    \centering\@grade
+                    \hrule height 0.7pt
+                \end{minipage}\\[0.1cm]
+                \makebox[5em][s]{姓\hfill 名：} &
+                \begin{minipage}[t]{18em}
+                    \centering\@studentname
+                    \hrule height 0.7pt
+                \end{minipage} \\[0.1cm]
+                \makebox[5em][s]{指导教师：} &
+                \begin{minipage}[t]{18em}
+                    \centering\@supervisor
+                    \hrule height 0.7pt
+                \end{minipage} \\
+            \end{tabular}
+        }
+        \vspace{\dimexpr3.45cm-\titleextrafill+\titleplusfill\relax}
+        {\heiti\zihao{3} 东北大学教务处印制}
+        \vspace{0.05cm}
+        {\heiti\zihao{3}\makebox[2em][c]{\@submityear} 年\makebox[2em][c]{\@submitmonth}月\makebox[2em][c]{\@submitday}日}
+    \end{center}
+    \begin{tikzpicture}[remember picture,overlay]
+        \draw[line width=0.675pt] ([xshift=7.225cm,yshift=-13.32cm]current page.north west)
+        -- ([xshift=16.12cm,yshift=-13.32cm]current page.north west);
+    \end{tikzpicture}
+    \ifthenelse{\boolean{forcetitlenofill}}{%
+    }{%
+        \ifthenelse{\lengthtest{\titlewidth > 21.1em}}{%
+        \begin{tikzpicture}[remember picture,overlay]
+            \draw[line width=0.675pt] ([xshift=7.225cm,yshift=-14.415cm]current page.north west)
+             -- ([xshift=16.12cm,yshift=-14.415cm]current page.north west);
+        \end{tikzpicture}
+    }}
+    \setcounter{page}{0}
+    \newpage
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{标题样式}
+%
+%    \begin{macrocode}
+\ctexset{
+    section = {
+        format = \heiti\Large,
+        beforeskip = 6pt,
+        afterskip = 6pt,
+    },
+    subsection = {
+        format = \heiti\large,
+        beforeskip = 6pt,
+        afterskip = 6pt,
+    },
+    subsubsection = {
+        format = \heiti\normalsize,
+        beforeskip = 6pt,
+        afterskip = 6pt,
+    }
+}
+%    \end{macrocode}
+%
+% \subsection{模块命令}
+%
+%    \begin{macrocode}
+\RequirePackage{longtable}
+%    \end{macrocode}
+%
+% \begin{macro}{\mokuai}
+% 创建内容模块的命令。
+%    \begin{macrocode}
+\newcommand{\mokuai}[3][-4]{%
+\setlength{\LTpre}{0pt}%
+\setlength{\LTpost}{0pt}%
+\begin{longtable}{|@{\hspace{0.5em}}m{1.802cm}@{\hspace{0.5em}}|@{\hspace{0.4em}}m{13.825cm}@{\hspace{0.8em}}|}
+\hline
+\centering\kaishu\zihao{-4}\vspace{0.5em}\textbf{#2}\vspace{0.5em} &
+\zihao{#1}\vspace{0.5em}#3\vspace{0.7em} \\
+\endfirsthead
+\hline
+ &
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\end{longtable}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\jindu}
+% 工作进度安排表。
+%    \begin{macrocode}
+\newcommand{\jindu}[2][5]{%
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\begin{longtable}{|@{\hspace{0.5em}}m{1.802cm}@{\hspace{0.5em}}|@{}m{14.325cm}@{}|}
+\hline
+\centering\kaishu\zihao{-4}\textbf{%
+\begin{tabular}[b]{@{}>{\centering\arraybackslash}p{0.8cm}@{}}
+    \textbf{工作进度安排} \\
+\end{tabular}} &
+\zihao{#1}
+\begin{tabular}{@{}|>{\centering\arraybackslash}m{0.8cm}|>{\arraybackslash}m{3.68cm}|>{\arraybackslash}m{3.5cm}|>{\arraybackslash}m{4.6cm}|@{}}
+    \textbf{阶段} & \makecell[c]{\textbf{起止日期}} & \makecell[c]{\textbf{任务}} & \makecell[c]{\textbf{提交的阶段成果}} \\ \hline
+    #2
+\end{tabular} \\
+\endfirsthead
+\hline
+ &
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\end{longtable}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\jindunoleft}
+% 无左侧标题的工作进度表。
+%    \begin{macrocode}
+\newcommand{\jindunoleft}[2][5]{%
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\begin{longtable}{|@{\hspace{0.5em}}m{1.802cm}@{\hspace{0.5em}}|@{}m{14.325cm}@{}|}
+\hline
+\centering\kaishu\zihao{-4} &
+\zihao{#1}
+\begin{tabular}{@{}|>{\centering\arraybackslash}m{0.8cm}|>{\arraybackslash}m{3.68cm}|>{\arraybackslash}m{3.5cm}|>{\arraybackslash}m{4.6cm}|@{}}
+    \textbf{阶段} & \makecell[c]{\textbf{起止日期}} & \makecell[c]{\textbf{任务}} & \makecell[c]{\textbf{提交的阶段成果}} \\ \hline
+    #2
+\end{tabular} \\
+\endfirsthead
+\hline
+ &
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+\end{longtable}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{图片命令}
+%
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+%
+% \begin{macro}{\tu}
+% 插入图片。
+%    \begin{macrocode}
+\newcommand{\tu}[2]{%
+\vspace{0.25em}
+\begin{minipage}{13.825cm}
+\centering
+\includegraphics[width=#1]{#2}
+\end{minipage}
+\vspace{0.25em}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{表格命令}
+%
+%    \begin{macrocode}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+%    \end{macrocode}
+%
+% \begin{macro}{\biao}
+% 插入表格。
+%    \begin{macrocode}
+\newcommand{\biao}[2]{%
+  \begin{minipage}{\linewidth}
+    \vspace{0.25em}
+    \centering
+    \renewcommand{\arraystretch}{1}
+    \begin{tabularx}{\linewidth}{*{#1}{>{\centering\arraybackslash}X}}
+      \toprule
+      #2
+      \bottomrule
+    \end{tabularx}
+  \end{minipage}%
+  \vspace{0.05em}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{题注命令}
+%
+%    \begin{macrocode}
+\RequirePackage{xstring}
+\newcounter{tizhutu}
+\newcounter{tizhubiao}
+%    \end{macrocode}
+%
+% \begin{macro}{\tizhu}
+% 图表题注。
+%    \begin{macrocode}
+\newcommand{\tizhu}[3][5]{%
+  \IfStrEq{#2}{tu}{%
+    \refstepcounter{tizhutu}%
+    {\centering\zihao{#1}图\thetizhutu\hspace{1em}#3\par}%
+  }{%
+    \IfStrEq{#2}{biao}{%
+      \refstepcounter{tizhubiao}%
+      {\centering\zihao{#1}表\thetizhubiao\hspace{1em}#3\par}%
+    }{%
+      \PackageError{tizhu}{Unknown type: #2}{Use 'tu' or 'biao'}%
+    }%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{评审表格}
+%
+%    \begin{macrocode}
+\RequirePackage{pdfpages}
+%    \end{macrocode}
+%
+% \begin{macro}{\huiyijiyao}
+% 插入会议纪要。
+%    \begin{macrocode}
+\newcommand{\huiyijiyao}{%
+    \includepdf[
+      pages=1,
+      width=\paperwidth,
+      height=\paperheight,
+      pagecommand={\thispagestyle{fancy}}
+    ]{huiyijiyao.pdf}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{参考文献}
+%
+%    \begin{macrocode}
+\RequirePackage[
+    backend = biber,
+    style = gb7714-2025,
+    sorting = none,
+    gbnamefmt = lowercase,
+    gbnoauthor = false,
+    gbpub = true,
+    gbpunctwidth = bylan,
+    url = true,
+    doi = true
+]{biblatex}
+\addbibresource{references.bib}
+%    \end{macrocode}
+%
+% \begin{macro}{\printbibrange}
+% 按范围打印文献。
+%    \begin{macrocode}
+\newcounter{bibrangecount}
+\newcommand{\printbibrange}[3][heading=none]{%
+  \setcounter{bibrangecount}{0}%
+  \defbibcheck{bibrange}{%
+    \stepcounter{bibrangecount}%
+    \ifnumgreater{\value{bibrangecount}}{#3}%
+      {\skipentry}%
+      {\ifnumless{\value{bibrangecount}}{#2}%
+        {\skipentry}%
+        {}%
+      }%
+  }%
+  \printbibliography[check=bibrange, #1]%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% 设置参考文献样式。
+%
+%    \begin{macrocode}
+\setlength{\bibitemsep}{0pt}
+\setlength{\biblabelsep}{7.4mm}
+\setcounter{gbrefcompress}{3}
+\def\gbpunctcommacite{\addcomma}
+\def\gbpunctprl{(}
+\def\gbpunctprr{)}
+\def\CharParenLeft{\iffieldequalstr{userd}{chinese}{(}{(}}
+\def\CharParenRight{\iffieldequalstr{userd}{chinese}{)}{)}}
+\def\gbpunctdot{\unskip\mbox{．}\allowbreak}
+%    \end{macrocode}
+%
+% \subsection{其他设置}
+%
+%    \begin{macrocode}
+\newcommand{\suojin}{\hspace*{2em}}
+\newcommand{\tips}[1]{{\zihao{-5}\textcolor{red}{#1}}}
+\RequirePackage[%
+draft=false,
+colorlinks=true,
+CJKbookmarks=true,
+linkcolor=black,
+citecolor=black,
+urlcolor=black,
+hyperindex,
+linktoc=all]{hyperref}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\endinput
+%</class>
+%    \end{macrocode}
+%
+% \Finale
+\endinput
