@@ -14,7 +14,23 @@
 
 ## 快速开始
 
+### 方式一：使用 dtx 源文件（推荐用于发布）
+
+本项目采用标准的 `.dtx` 格式发布，这是 LaTeX 宏包的标准分发方式：
+
 1. 克隆或下载本仓库
+2. 运行 `xelatex NEUBachelorProposal.ins` 生成 `NEUBachelorProposal.cls` 文件
+3. 编辑 `main.tex` 文件，填写个人信息和报告内容
+4. 使用 XeLaTeX 按上述顺序编译 `main.tex`
+
+如需查看文档类的完整文档说明，可以运行：
+```bash
+xelatex NEUBachelorProposal.dtx
+```
+
+### 方式二：直接使用（适合快速开始）
+
+1. 克隆或下载本仓库（已包含生成好的 `NEUBachelorProposal.cls`）
 2. 编辑 `main.tex` 文件，填写个人信息和报告内容
 3. 使用 XeLaTeX 按上述顺序编译
 
@@ -22,11 +38,19 @@
 
 ## 文件说明
 
-- `main.tex` - 主文档，包含报告全部内容
-- `NEUBachelorProposal.cls` - 模板类文件
+### 源文件
+- `NEUBachelorProposal.dtx` - 文档化源文件（包含代码和文档）
+- `NEUBachelorProposal.ins` - 安装脚本
+
+### 生成文件
+- `NEUBachelorProposal.cls` - 模板类文件（由 `.ins` 从 `.dtx` 生成）
+
+### 示例和辅助文件
+- `main.tex` - 主文档，包含报告全部内容和使用示例
 - `references.bib` - 参考文献数据库
 - `gb7714-2025.bbx/cbx` - 国标参考文献样式文件
 - `huiyijiyao.doc/pdf` - 会议纪要模板
+- `figures/` - 示例图片文件夹
 
 ## 使用说明
 
