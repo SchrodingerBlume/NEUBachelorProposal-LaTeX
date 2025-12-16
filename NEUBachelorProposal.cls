@@ -1,7 +1,7 @@
 % 东北大学本科毕业设计（论文）开题报告LaTeX模板样式类
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{NEUBachelorProposal}[2025/11/19 V-1.0.0 A Bachelor Proposal LaTeX Template for NEU students]
-\providecommand{\Version}{V-1.0.0}
+\ProvidesClass{NEUBachelorProposal}[2025/12/16 V-1.0.3 A Bachelor Proposal LaTeX Template for NEU students]
+\providecommand{\Version}{V-1.0.3}
 \LoadClass[UTF8,heading=true,12pt,a4paper,fontset=none]{ctexart}
 
 % ==================== 基本宏包 ====================
@@ -36,8 +36,9 @@
 \setlength{\parskip}{0.5em}
 
 % ==================== 字体设置 ====================
-\newcommand{\fakeboldvalue}{2.17}   % 伪粗体参数
-\newcommand{\fakeslantvalue}{0.333} % 伪斜体参数
+\newcommand{\fakeboldvalue}{3.00}   % 伪粗体参数
+\newcommand{\fakeslantvalue}{0.275} % 伪斜体参数
+\newcommand{\veryfakeboldvalue}{5}  % 超粗伪粗体参数
 
 \newif\iffound@system
 \newif\iffound@font
@@ -232,6 +233,74 @@
 \newcommand*{\kaishu}{\CJKfamily{zhkai}}
 \newcommand*{\fangsong}{\CJKfamily{zhfs}}
 
+% ========== 方正大标宋定义 ==========
+\newcommand{\COVERTITLEsongti}{\CJKfamily{COVERTITLEsongti}}
+
+\def\TargetFontFileName{FZDBSJW.TTF} 
+
+\IfFileExists{\TargetFontFileName}{
+    \setCJKfamilyfont{COVERTITLEsongti}{\TargetFontFileName}[
+        Path = ./ ,
+        AutoFakeSlant = \fakeslantvalue,
+        % 大标宋本身够粗，不需要 AutoFakeBold
+    ]
+}{
+    % 检测操作系统是否安装了该字体
+    \IfFontExistsTF{FZDBSJW--GB1-0}{
+        \setCJKfamilyfont{COVERTITLEsongti}{FZDBSJW--GB1-0}[
+            AutoFakeSlant = \fakeslantvalue,
+        ]
+    }{
+        % 兜底使用 Fandol
+        \setCJKfamilyfont{COVERTITLEsongti}{FandolSong}[
+            Extension     = .otf,
+            UprightFont   = *-Regular,
+            BoldFont      = *-Bold,
+            AutoFakeBold  = false, % Fandol 有真粗体，关闭伪粗体
+            AutoFakeSlant = \fakeslantvalue,
+        ]
+    }
+}
+
+% ========== 超粗宋体定义 ==========
+\iffound@system
+  \IfFontExistsTF{SimSun}{
+    \setCJKfamilyfont{veryboldsong}{SimSun}[
+      AutoFakeBold  = \veryfakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+  }{
+    \setCJKfamilyfont{veryboldsong}{Songti SC}[
+      AutoFakeBold  = \veryfakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+  }
+\else
+  \iffound@font
+    \IfFontExistsTF{Noto Serif CJK SC}{
+      \setCJKfamilyfont{veryboldsong}{Noto Serif CJK SC}[
+        AutoFakeBold  = \veryfakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+    }{
+      \setCJKfamilyfont{veryboldsong}{Source Han Serif SC}[
+        AutoFakeBold  = \veryfakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+    }
+  \else
+    \setCJKfamilyfont{veryboldsong}{FandolSong}[
+      Extension     = .otf,
+      UprightFont   = *-Regular,
+      BoldFont      = *-Bold,
+      AutoFakeBold  = false,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+  \fi
+\fi
+
+\newcommand{\veryboldsongti}{\CJKfamily{veryboldsong}}
+
 \setmainfont{Times New Roman}
 
 % ==================== 数学字体设置 ====================
@@ -241,11 +310,27 @@
 CJKmath=true, % 公式中直接写中文
 }
 
-\setmathfont{XITS Math}[StylisticSet = 8]
-\setmathfont{XITS Math}[%
-    StylisticSet = 1,
-    range        = {cal,bfcal},
-]%
+\IfFontExistsTF{XITS Math}{
+    \setmathfont{XITS Math}[StylisticSet = 8]
+    \setmathfont{XITS Math}[
+        StylisticSet = 1,
+        range        = {cal,bfcal},
+    ]
+}{
+    \IfFontExistsTF{STIX Two Math}{
+        \setmathfont{STIX Two Math}[StylisticSet = 8]
+        \setmathfont{STIX Two Math}[
+            StylisticSet = 1,
+            range        = {cal,bfcal},
+        ]
+    }{
+        \setmathfont{Latin Modern Math}[StylisticSet = 8]
+        \setmathfont{Latin Modern Math}[
+            StylisticSet = 1,
+            range        = {cal,bfcal},
+        ]
+    }
+}
 
 % 兼容旧的粗体命令
 \DeclareRobustCommand\bm[1]{{\symbfit{#1}}}%
@@ -472,7 +557,7 @@ CJKmath=true, % 公式中直接写中文
 
     % 根据 forcetitlenofill 的 bool 值，来设置对应的 \titleminusfill
     \ifthenelse{\boolean{forcetitlenofill}}{%
-        \setlength{\titleminusfill}{-1.9cm}
+        \setlength{\titleminusfill}{-0.792cm}
         \setlength{\titleplusfill}{1cm}
     }{%
         \setlength{\titleminusfill}{0cm}
@@ -483,54 +568,54 @@ CJKmath=true, % 公式中直接写中文
         \vspace*{2.19cm}
         
         % 封面大字
-        {\fontsize{28pt}{28pt}\selectfont 东北大学}
+        {\COVERTITLEsongti\fontsize{28pt}{28pt}\selectfont\textbf{东北大学}}
         
         \vspace{0.535cm}
         
-        {\fontsize{28pt}{28pt}\selectfont 毕业设计（论文）开题报告}
+        {\COVERTITLEsongti\fontsize{28pt}{28pt}\selectfont\textbf{毕业设计（论文）开题报告}}
         
-        \vspace{4.35cm}
+        \vspace{4.265cm}
         
         % 基本信息
         {\zihao{4}
             \hspace*{0cm}\begin{tabular}{@{}r@{\hspace*{-0em}}l@{}}
-                \makebox[5em][s]{题\hfill 目：} & 
+                \makebox[5em][s]{\veryboldsongti\textbf{题\hfill 目}：} & 
                 \begin{minipage}[t]{18em}
                     \linespread{1.85}\selectfont
                     \smarttitle{\@proposaltitle}
                 \end{minipage} \\[\dimexpr0.1cm+\titleextrafill+\titleminusfill\relax]% 标题两行时，加上额外高度
                 
-                \makebox[5em][s]{学\hfill 院：} & 
+                \makebox[5em][s]{\veryboldsongti\textbf{学\hfill 院}：} & 
                 \begin{minipage}[t]{18em}
                     \centering\@school
                     \hrule height 0.7pt
                 \end{minipage} \\[0.1cm]
                 
-                \makebox[5em][s]{专\hfill 业：} & 
+                \makebox[5em][s]{\veryboldsongti\textbf{专\hfill 业}：} & 
                 \begin{minipage}[t]{18em}
                     \centering\@major
                     \hrule height 0.7pt
                 \end{minipage} \\[0.1cm]
                 
-                \makebox[5em][s]{学\hfill 号：} & 
+                \makebox[5em][s]{\veryboldsongti\textbf{学\hfill 号}：} & 
                 \begin{minipage}[t]{5.2025cm}
                     \centering\@studentid
                     \vspace{0.03cm}
                     \hrule height 0.7pt
                 \end{minipage}
                 \hfill
-                年级\begin{minipage}[t]{2.45cm}
+                {\veryboldsongti\textbf{年级}}\begin{minipage}[t]{2.45cm}
                     \centering\@grade
                     \hrule height 0.7pt
                 \end{minipage}\\[0.1cm]
                 
-                \makebox[5em][s]{姓\hfill 名：} & 
+                \makebox[5em][s]{\veryboldsongti\textbf{姓\hfill 名}：} & 
                 \begin{minipage}[t]{18em}
                     \centering\@studentname
                     \hrule height 0.7pt
                 \end{minipage} \\[0.1cm]
                 
-                \makebox[5em][s]{指导教师：} & 
+                \makebox[5em][s]{\veryboldsongti\textbf{指导教师}：} & 
                 \begin{minipage}[t]{18em}
                     \centering\@supervisor
                     \hrule height 0.7pt
@@ -546,7 +631,7 @@ CJKmath=true, % 公式中直接写中文
         
         \vspace{0.05cm}
         
-        {\heiti\zihao{3}\makebox[2em][c]{\@submityear} 年\makebox[2em][c]{\@submitmonth}月\makebox[2em][c]{\@submitday}日}
+        {\heiti\zihao{3}\makebox[2em][c]{\@submityear} 年\makebox[1em][c]{\@submitmonth}月\makebox[1em][c]{\@submitday}日}
         
     \end{center}
     
@@ -595,7 +680,7 @@ CJKmath=true, % 公式中直接写中文
 
 \newcommand{\mokuai}[3][-4]{%
 \setlength{\LTpre}{0pt}%   % 前间距
-\setlength{\LTpost}{0pt}%  % 后间距
+\setlength{\LTpost}{-0.45pt}%  % 后间距
 \begin{longtable}{|@{\hspace{0.5em}}m{1.802cm}@{\hspace{0.5em}}|@{\hspace{0.4em}}m{13.825cm}@{\hspace{0.8em}}|}
 % 首页的表头和内容
 \hline
@@ -615,7 +700,7 @@ CJKmath=true, % 公式中直接写中文
 % 工作进度安排
 \newcommand{\jindu}[2][5]{%
 \setlength{\LTpre}{0pt}
-\setlength{\LTpost}{0pt}
+\setlength{\LTpost}{-0.45pt}
 \begin{longtable}{|@{\hspace{0.5em}}m{1.802cm}@{\hspace{0.5em}}|@{}m{14.325cm}@{}|}
 \hline
 \centering\kaishu\zihao{-4}\textbf{%
@@ -623,10 +708,11 @@ CJKmath=true, % 公式中直接写中文
     \textbf{工作进度安排} \\
 \end{tabular}} &
 \zihao{#1}
-\begin{tabular}{@{}|>{\centering\arraybackslash}m{0.8cm}|>{\arraybackslash}m{3.68cm}|>{\arraybackslash}m{3.5cm}|>{\arraybackslash}m{4.6cm}|@{}}
+% 左侧向左给一点负间距，右侧保持无间距
+\begin{tabular}{@{\hspace{-0.45pt}}|>{\centering\arraybackslash}m{0.8cm}|>{\arraybackslash}m{3.7cm}|>{\arraybackslash}m{3.5cm}|>{\arraybackslash}m{4.6cm}|@{}}
     \textbf{阶段} & \makecell[c]{\textbf{起止日期}} & \makecell[c]{\textbf{任务}} & \makecell[c]{\textbf{提交的阶段成果}} \\ \hline
     #2
-\end{tabular} \\
+\end{tabular}
 \endfirsthead
 \hline
  &
@@ -711,6 +797,12 @@ CJKmath=true, % 公式中直接写中文
     }%
   }%
 }
+
+% ==================== Code ====================
+% 定义 verbx 命令，用于在模块中安全显示代码
+\newcommand{\verbx}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\lb}{\texttt{\{}}% 用来显示“{”
+\newcommand{\rb}{\texttt{\}}}% 用来显示“}”
 
 % ==================== 评审表格 ====================
 \RequirePackage{pdfpages}

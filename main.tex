@@ -27,7 +27,7 @@
 \studentid{20227523}% 学号
 \grade{2022级}% 年级
 \studentname{薛定谔}% 学生姓名
-\supervisor{毛毛}% 指导教师
+\supervisor{花毛猫}% 指导教师
 \submityear{2025}% 年份
 \submitmonth{3}% 月份
 \submitday{3}% 日期
@@ -48,18 +48,18 @@
 
 \suojin 编译器请选择 XeLaTeX，文献工具请选择 biber。
 
-\suojin 每个模块使用\texttt{\textbackslash mokuai}[<字号>]\{<左侧文字>\}\{<正文内容>\}得到，其中，字号参数缺省时，默认使用小四号字体。例如想要使用五号字，就使用\texttt{\textbackslash mokuai[5]\{\}\{\}}；想要使用小三号字，就使用\texttt{\textbackslash mokuai[-3]\{\}\{\}}。
+\suojin 每个模块使用\verbx{\mokuai[<字号>]{<左侧文字>}{<正文内容>}}得到，其中，字号参数缺省时，默认使用小四号字体。例如想要使用五号字，就使用\verbx{\mokuai[5]{}{}}；想要使用小三号字，就使用\verbx{\mokuai[-3]{}{}}。
 
-\suojin 左侧文字使用\texttt{\textbackslash\textbackslash}来换行。
+\suojin 左侧文字使用\verbx{\\}来换行。
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 国内外研究现状概述
 \mokuai{国\\内\\外\\研\\究\\现\\状\\概\\述}{%
 \tips{（根据调研结果从理论、技术、具体应用、发展方向等方面阐述当前课题的国内外研究或实现现状，进而说明当前存在哪些不足……）}
 
-\suojin 像这样在段首使用\texttt{\textbackslash suojin}命令实现首行缩进。
+\suojin 像这样在段首使用\verbx{\suojin}命令实现首行缩进。
 
-像这样不在段首使用\texttt{\textbackslash suojin}命令则不会首行缩进。
+像这样不在段首使用\verbx{\suojin}命令则不会首行缩进。
 
 \suojin 每次新起一段文字时，应当在代码中空一行。
 
@@ -71,16 +71,16 @@
 
 \paragraph{四级标题默认设置是不换行的}
 
-这是正文，与\texttt{\textbackslash paragraph}之间没有换行。
+这是正文，与\verbx{\paragraph}之间没有换行。
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 主要研究内容
 \mokuai{主\\要\\研\\究\\内\\容}{%
 \tips{（从毕业设计具体从事的工作进行描述，说明自己毕业设计所做的内容。）}
 
-\suojin\texttt{\textbackslash mokuai}命令的实现基于表格环境，因此许多常规的\LaTeX\ 命令无法使用。例如\texttt{\textbackslash verb}命令就不可用，但这无伤大雅，必须指出，在开题报告中写代码实在不是明智之选。
+\suojin\verbx{\mokuai}命令的实现基于表格环境，因此许多常规的\LaTeX\ 命令无法使用，因此本模板提供了一些替代命令。例如，可使用\verbx{\verbx{}}命令代替\verbx{\verb||}命令——但必须指出，在开题报告中写代码实在不是明智之选。
 
-\suojin 首先介绍图的使用，基本框架是：\texttt{\textbackslash tu\{<图片宽度>\}\{<图片路径>\}}，其中图片宽度不得超过\texttt{13.825cm}；图的题注命令格式是：\texttt{\textbackslash tizhu\{tu\}\{<题注内容>\}\textbackslash label\{<图标签>\}}。看图\ref{fig:flower}这个例子：
+\suojin 首先介绍图的使用，基本框架是：\verbx{\tu{<图片宽度>}{<图片路径>}}，其中图片宽度不得超过\verbx{13.825cm}；图的题注命令格式是：\verbx{\tizhu{tu}{<题注内容>}\label{<图标签>}}。看图\ref{fig:flower}这个例子：
 
 \vskip 2em % 2 字高刚好齐底，即再大了，这个模块就会跑到下一页
 }
@@ -91,21 +91,21 @@
 \tu{4cm}{figures/flower.png}
 \tizhu{tu}{蓝天下的一朵花}\label{fig:flower}
 
-\suojin 跨页后若要续上个模块，应新起一个模块，并将左侧文字留空（当然，你要是想重复左侧文字的话也可以）。可以在每页插入若干\texttt{\textbackslash vskip}命令，以调整底部横线至足够美观的位置。例如上一页最后就插入了一个\texttt{\textbackslash vkip 2em}。
+\suojin 跨页后若要续上个模块，应新起一个模块，并将左侧文字留空（当然，你要是想重复左侧文字的话也可以）。可以在每页插入若干\verbx{\vskip}命令，以调整底部横线至足够美观的位置。例如上一页最后就插入了一个\verbx{\vkip 2em}。
 
-\suojin 接下来介绍表格的使用。由于\texttt{\textbackslash mokuai}中不支持继续嵌套表格，只能通过\texttt{tabular(x)}环境结合\texttt{minipage}环境来实现，本模板已将其封装为一个宏命令，其框架为：
+\suojin 接下来介绍表格的使用。由于\verbx{\mokuai}中不支持继续嵌套表格，只能通过\verbx{tabular(x)}环境结合\verbx{minipage}环境来实现，本模板已将其封装为一个宏命令，其框架为：
 
-\texttt{\textbackslash tizhu\{biao\}\{<题注内容>\}\textbackslash label\{<表标签>\}}
+\verbx{\tizhu{biao}{<题注内容>}\label{<表标签>}}
 
-\texttt{\textbackslash biao\{<列数>\}\{}
+\verbx{\biao{<列数>}}\lb% \lb 用来显示孤立的“左花括号”
 
-\texttt{表头1 \& 表头2 \textbackslash\textbackslash~\textbackslash midrule \% <-- 表头要加}
+\verbx{表头1 & 表头2 \\ \midrule} \texttt{\% <-- 表头要加}
 
-\texttt{内容1 \& 内容2 \textbackslash\textbackslash}
+\verbx{内容1 & 内容2 \\}
 
-\texttt{\}}
+\rb% \rb 用来显示孤立的“右花括号”
 
-\suojin 如表\ref{tab:motto}所示，单元格内可以套上一层\texttt{\textbackslash makecell[c]\{\}}，并结合\texttt{\textbackslash\textbackslash}来换行。
+\suojin 如表\ref{tab:motto}所示，单元格内可以套上一层\verbx{\makecell[c]{}}，并用\verbx{\\}来换行。
 
 \tizhu{biao}{东大校训与生科院训}\label{tab:motto}
 \biao{2}{
@@ -120,18 +120,18 @@
 
 \suojin “工作进度安排”有自己专属的命令，其格式为：
 
-\texttt{\textbackslash jindu\{}
+\verbx{\jindu}\lb
 
-\texttt{ <阶段1> \& <起止日期1> \& <任务1> \& <阶段成果1> \textbackslash\textbackslash~\textbackslash hline}
+\verbx{<阶段1> & <起止日期1> & <任务1> & <阶段成果1> \\ \hline}
 
-\texttt{ <阶段2> \& <起止日期2> \& <任务2> \& <阶段成果2> \textbackslash\textbackslash~\textbackslash hline}
+\verbx{<阶段2> & <起止日期2> & <任务2> & <阶段成果2> \\ \hline}
 
-\texttt{……\} \%~最后一行可以不加\textbackslash hline}
+\verbx{……}\rb\texttt{\%}\verbx{最后一行可以不加\hline}
 }
 
 % 续上一模块
 \mokuai{}{%
-\suojin 进度模块中如需换行，应使用\texttt{\textbackslash newline}命令，具体示例见对应模块。
+\suojin 进度模块中如需换行，应使用\verbx{\newline}命令，具体示例见对应模块。
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,32 +149,34 @@
 
 % 参考文献目录
 \mokuai{参考\\文献\\目录}{%
-\suojin 参考文献\texttt{bib}信息统一放在根目录下的\texttt{references.bib}中。在文中使用\texttt{\textbackslash cite\{<bibkey>\}}来引用\cite{1_book_example1}；同时引用多个文献时，把所有\texttt{<bibkey>}放到一个命令中，用半角逗号隔开\cite{2_book_example2,3_conference_example1,4_collection_example1,5_thesis_example1}；正文中如需对引文进行阐述时，应使用\texttt{\textbackslash parencite\{\}}命令代替\texttt{\textbackslash cite\{\}}命令，且用法不变，如：\parencite{1_book_example1,2_book_example2,7_report_example1,8_report_example2}。
+\suojin 参考文献\verbx{bib}信息统一放在根目录下的\verbx{references.bib}中。在文中使用\verbx{\cite{<bibkey>}}来引用\cite{1_book_example1}；同时引用多个文献时，把所有\verbx{<bibkey>}放到一个命令中，用半角逗号隔开\cite{2_book_example2,3_conference_example1,4_collection_example1,5_thesis_example1}；正文中如需对引文进行阐述时，应使用\verbx{\parencite{}}命令代替\verbx{\cite{}}命令，且用法不变，如：\parencite{1_book_example1,2_book_example2,7_report_example1,8_report_example2}。
 
-\suojin 打印文献使用\texttt{\textbackslash printbibrange\{<起始编号>\}\{<结束编号>\}}，只有引用过才能被打印\cite{9_patent_example1,11_inbook_example1,12_inconference_example1,13_periodical_example1,14_periodical_example3,15_journal_example1,16_news_example1,17_online_book_example1,18_online_journal_example1,19_online_news_example1,20_dbmt}。例如\texttt{\textbackslash printbibrange\{1\}\{1\}}就会打印第1篇文献。
+\suojin 打印文献使用\verbx{\printbibrange{<起始编号>}{<结束编号>}}，只有引用过才能被打印\cite{9_patent_example1,11_inbook_example1,12_inconference_example1,13_periodical_example1,14_periodical_example3,15_journal_example1,16_news_example1,17_online_book_example1,18_online_journal_example1,19_online_news_example1,20_dbmt}。例如\verbx{\printbibrange{1}{1}}会打印第1篇文献。
 
 \printbibrange{1}{1}
 }
 % 续上一模块
 \mokuai{}{%
 
-\tips{再例如\texttt{\textbackslash printbibrange\{2\}\{11\}}就会打印第2至11篇文献。}
+\tips{再例如\verbx{\printbibrange{2}{11}}就会打印第2至11篇文献。}
 
 \printbibrange{2}{11}
 
 \vskip 0.75em% 插入空白至齐底
 
-\tips{应当合理调整打印范围，并结合\texttt{\textbackslash vskip}以平衡分页的合理性与美观性。}
+\tips{应当合理调整打印范围，并结合\verbx{\vskip}以平衡分页的合理性与美观性。}
 }
 % 续上一模块
 \mokuai{}{%
 \printbibrange{12}{18}
 
-\suojin 会议纪要太过复杂，使用\LaTeX\ 来实现反而增加不便。请在根目录下找到\texttt{huiyijiyao.doc}，在 Word 中填写后，输出为同名 pdf 文件，然后以之覆盖根目录中已有的\texttt{huiyijiyao.pdf}。\texttt{\textbackslash huiyijiyao}命令用于插入这个 pdf。
+\suojin 会议纪要太过复杂，使用\LaTeX\ 来实现反而不便。请在根目录下找到\verbx{huiyijiyao.doc}，在 Word 中填写后，输出为同名 pdf 文件，然后以之覆盖根目录中已有的\verbx{huiyijiyao.pdf}。使用\verbx{\huiyijiyao}命令生成会议纪要。
 
-\vskip 14em% 插入空白至齐底
+\suojin 封面中「东北大学毕业设计（论文）开题报告」字样若希望使用“{\COVERTITLEsongti\textbf{方正大标宋简体}}”，则需要本地安装对应字体或将字体文件命名为“\verbx{FZDBSJW.ttf}”并放置于根目录。当字体不存在时，会使用 Fandol 宋体加粗以模拟其效果。
 
-\tips{应当合理调整打印范围，并结合\texttt{\textbackslash vskip}以平衡分页的合理性与美观性。}
+\vskip 8em% 插入空白至齐底
+
+\tips{应当合理调整打印范围，并结合\verbx{\vskip}以平衡分页的合理性与美观性。}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 会议纪要
