@@ -1,7 +1,7 @@
 # 东北大学本科毕业设计开题报告 LaTeX 模板
 
 ![License](https://img.shields.io/github/license/SchrodingerBlume/NEUBachelorProposal-LaTeX)
-![GitHub release](https://img.shields.io/github/v/release/SchrodingerBlume/NEUBachelorProposal-LaTeX)
+![GitHub release](https://img.shields.io/badge/release-v1.0.3-brightgreen)](https://github.com/SchrodingerBlume/NEUBachelorProposal-LaTeX/releases/tag/V-1.0.3)
 ![GitHub stars](https://img.shields.io/github/stars/SchrodingerBlume/NEUBachelorProposal-LaTeX?style=social)
 
 东北大学（NEU）本科毕业设计（论文）开题报告的 LaTeX 模板，遵循学校规范格式要求。
